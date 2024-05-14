@@ -19,5 +19,6 @@ public class Main {
     // this is another unused variable
     int j = 0;
     int k = 0;
+    int l = 0;
   }
 }
