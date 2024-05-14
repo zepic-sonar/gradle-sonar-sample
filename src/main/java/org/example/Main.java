@@ -1,5 +1,7 @@
 package org.example;
 
+import java.io.UncheckedIOException;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -20,5 +22,24 @@ public class Main {
     int j = 0;
     int k = 0;
     int l = 0;
+    // this is NPE
+    String s = null;
+    System.out.println(s.length());
+  }
+
+  void processFile(String fileName) throws Exception {
+    try {
+      doProcessFile(fileName);
+    } catch(Exception ex) {
+      if (ex instanceof UncheckedIOException) {
+        // Warning: catch block parameter reassigned
+        ex = ((UncheckedIOException) ex).getCause();
+      }
+      throw ex;
+    }
+  }
+
+  void doProcessFile(String fileName) throws Exception {
+    // process file
   }
 }
