@@ -25,6 +25,7 @@ public class Main {
     // this is NPE
     String s = null;
     System.out.println(s.length());
+    System.out.printf("test codeql");
   }
 
   void processFile(String fileName) throws Exception {
