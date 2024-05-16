@@ -23,10 +23,6 @@ public class Main {
     int k = 0;
     int l = 0;
     // this is NPE
-    String s = null;
-    System.out.println(s.length());
-    System.out.printf("test codeql");
-    System.out.printf("test codeql");
   }
 
   void processFile(String fileName) throws Exception {
