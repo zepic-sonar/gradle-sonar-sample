@@ -26,9 +26,22 @@ public class Main {
     String s = null;
     System.out.println(s.length());
     System.out.printf("test codeql");
+    System.out.printf("test codeql");
   }
 
   void processFile(String fileName) throws Exception {
+    try {
+      doProcessFile(fileName);
+    } catch(Exception ex) {
+      if (ex instanceof UncheckedIOException) {
+        // Warning: catch block parameter reassigned
+        ex = ((UncheckedIOException) ex).getCause();
+      }
+      throw ex;
+    }
+  }
+
+    void processFile2(String fileName) throws Exception {
     try {
       doProcessFile(fileName);
     } catch(Exception ex) {
