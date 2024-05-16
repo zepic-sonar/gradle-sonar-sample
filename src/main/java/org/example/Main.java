@@ -26,8 +26,6 @@ public class Main {
     String s = null;
     System.out.println(s.length());
     System.out.printf("test codeql");
-    System.out.printf("test codeql");
-    System.out.printf("test codeql");
   }
 
   void processFile(String fileName) throws Exception {
