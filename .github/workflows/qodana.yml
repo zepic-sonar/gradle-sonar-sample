@@ -10,6 +10,9 @@ on:
 jobs:
   qodana:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      check: write
     name: code-quality qodana
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -20,6 +23,6 @@ jobs:
         with:
           args: --source-directory,./src/main/java , --fail-threshold, 0
           post-pr-comment: "false"
-      - uses: github/codeql-action/upload-sarif@1b1aada464948af03b950897e5eb522f92603cc2 # v3
-        with:
-          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
+      # - uses: github/codeql-action/upload-sarif@1b1aada464948af03b950897e5eb522f92603cc2 # v3
+      #   with:
+      #     sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
