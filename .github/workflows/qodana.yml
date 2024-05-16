@@ -10,20 +10,16 @@ on:
 jobs:
   qodana:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      checks: write
+    name: code-quality qodana
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
-          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
-          fetch-depth: 0  # a full history is required for pull request analysis
+          fetch-depth: 0
       - name: 'Qodana Scan'
-        uses: JetBrains/qodana-action@v2022.3.4
-        env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
-      - name: 'Github codeql'
-        uses: github/codeql-action/upload-sarif@v2
+        uses: JetBrains/qodana-action@e42ff2d2727091337983f607598abbbce4e25f1f # v2023.3.1
+        with:
+          args: --source-directory,./src/main/java , --fail-threshold, 0
+          post-pr-comment: "false"
+      - uses: github/codeql-action/upload-sarif@1b1aada464948af03b950897e5eb522f92603cc2 # v3
         with:
           sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
