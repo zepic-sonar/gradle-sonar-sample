@@ -37,7 +37,19 @@ public class Main {
     }
   }
 
-    void processFile2(String fileName) throws Exception {
+  void processFile2(String fileName) throws Exception {
+    try {
+      doProcessFile(fileName);
+    } catch(Exception ex) {
+      if (ex instanceof UncheckedIOException) {
+        // Warning: catch block parameter reassigned
+        ex = ((UncheckedIOException) ex).getCause();
+      }
+      throw ex;
+    }
+  }
+
+  void processFile3(String fileName) throws Exception {
     try {
       doProcessFile(fileName);
     } catch(Exception ex) {
